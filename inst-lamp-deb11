@@ -9,3 +9,30 @@ sudo ufw app info "WWW Full"
 #install NGINX
 sudo apt install nginx
 #chenge NGINX config
+
+
+
+sudo apt install -y mariadb-server mariadb-client
+
+
+#security setting 
+
+echo -e "\n\033[33mPlease enter new root password for MySQL!\n"
+read -s rpwd
+sudo mysql -e "SET PASSWORD FOR root@localhost = PASSWORD('$rpwd');FLUSH PRIVILEGES;" 
+printf "$rpwd\n n\n n\n n\n y\n y\n y\n" | sudo mysql_secure_installation
+
+
+
+echo -e "\033[33mPlease enter name of new database"
+read db
+echo -e "\033[33mPlease enter new user's name"
+read uname
+echo -e "\033[33mPlease enter password for $uname"
+read -s upwd
+
+sudo mysql -uroot -p$rpwd -e "CREATE DATABASE ${db} /*\!40100 DEFAULT CHARACTER SET utf8 */;"
+sudo mysql -uroot -p$rpwd -e "CREATE USER ${uname} IDENTIFIED BY '${upwd}';"
+sudo mysql -uroot -p$rpwd -e "GRANT ALL PRIVILEGES ON ${db}.* TO '${uname}';"
+sudo mysql -uroot -p$rpwd -e "FLUSH PRIVILEGES;"
+echo -e "\n\n\033[32mDatabase has succesful created\n\n"
