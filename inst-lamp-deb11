@@ -35,3 +35,4 @@ sudo mysql -uroot -p$rpwd -e "GRANT ALL PRIVILEGES ON ${db}.* TO '${uname}';"
 sudo mysql -uroot -p$rpwd -e "FLUSH PRIVILEGES;"
 
 echo -e "\n\n\033[32mDatabase has succesful created"
+#hello
