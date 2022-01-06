@@ -9,3 +9,5 @@ sudo ufw app info "WWW Full"
 #install NGINX
 sudo apt install nginx
 #chenge NGINX config
+
+#bigin wordpress script 
