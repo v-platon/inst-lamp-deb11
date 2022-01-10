@@ -2,7 +2,7 @@
 
 sudo apt update
 #install Apache + php + php-modules
-sudo apt install apache2 apache2-utils php7.4 php7.4-mysql libapache2-mod-php7.4 php7.4-cli php7.4-cgi php7.4-gd
+sudo apt install -y apache2 apache2-utils php7.4 php7.4-mysql libapache2-mod-php7.4 php7.4-cli php7.4-cgi php7.4-gd
 #make directory fot the future site
 sudo mkdir /var/www/task
 echo "Apache2 installed"
@@ -13,7 +13,7 @@ sudo a2ensite apache.conf
 sudo service apache2 restart
 echo "Apache2 listening port changed to 8081"
 #install NGINX
-sudo apt install nginx
+sudo apt install -y nginx
 echo "NGINX installed"
 #change NGINX config
 sudo cp /home/$USER/inst-lamp-deb11/nginx-conf /etc/nginx/sites-available/nginx
@@ -24,17 +24,17 @@ echo "NGINX redirection to Apache enabled"
 sudo apt install -y mariadb-server mariadb-client
 
 #security setting 
-echo -e "\n\033[33mPlease enter new root password for MySQL!\n"
+echo -e "\n\033[33m Please enter new root password for MySQL!\n"
 read -s rpwd
 sudo mysql -e "SET PASSWORD FOR root@localhost = PASSWORD('$rpwd');FLUSH PRIVILEGES;" 
 printf "$rpwd\n n\n n\n n\n y\n y\n y\n" | sudo mysql_secure_installation
 
 #create database and user
-echo -e "\033[33mPlease enter name of new database"
+echo -e "\033[33m Please enter name of new database"
 read db
-echo -e "\033[33mPlease enter new user's name"
+echo -e "\033[33m Please enter new user's name"
 read uname
-echo -e "\033[33mPlease enter password for $uname"
+echo -e "\033[33m Please enter password for $uname"
 read -s upwd
 
 sudo mysql -uroot -p$rpwd -e "CREATE DATABASE ${db} /*\!40100 DEFAULT CHARACTER SET utf8 */;"
@@ -42,7 +42,7 @@ sudo mysql -uroot -p$rpwd -e "CREATE USER ${uname} IDENTIFIED BY '${upwd}';"
 sudo mysql -uroot -p$rpwd -e "GRANT ALL PRIVILEGES ON ${db}.* TO '${uname}';"
 sudo mysql -uroot -p$rpwd -e "FLUSH PRIVILEGES;"
 
-echo -e "\n\n\033[32mDatabase has succesful created"
+echo -e "\n\n\033[32m Database has succesful created"
 
 cd /tmp
 wget https://wordpress.org/latest.tar.gz
@@ -54,7 +54,7 @@ sudo chmod -R 755 /var/www/task
 sudo chown -R www-data:www-data /var/www/task/
 #
 cd /var/www/task/
-mv wp-config-sample.php wp-config.php
+sudo mv wp-config-sample.php wp-config.php
 #
 sudo service nginx restart
 sudo service apache2 restart
