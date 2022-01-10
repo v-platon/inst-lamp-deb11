@@ -1,0 +1,18 @@
+// ** MySQL settings - You can get this info from your web host ** //
+/** The name of the database for WordPress */ 
+define( 'DB_NAME', 'wordpressdb' );
+
+/* MySQL database username */ 
+define( 'DB_USER', 'wpuser1' );
+
+/* MySQL database password */
+define( 'DB_PASSWORD', 'YOUR PASSWORD' );
+
+/* MySQL hostname, change the IP here if external DB set up */ 
+define( 'DB_HOST', 'localhost' );
+
+/* Database Charset to use in creating database tables. */
+define( 'DB_CHARSET', 'utf8' );
+
+/* The Database Collate type. Don't change this if in doubt. */
+define( 'DB_COLLATE', '' );
