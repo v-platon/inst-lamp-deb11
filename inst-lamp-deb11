@@ -1,7 +1,25 @@
 #!/bin/bash
 
 sudo apt update
-sudo apt upgrade
+
+#install Apache + php + php-modules
+sudo apt install apache2 apache2-utils php7.4 php7.4-mysql libapache2-mod-php7.4 php7.4-cli php7.4-cgi php7.4-gd
+#make directory fot the future site
+sudo mkdir /var/www/task
+echo "Apache2 installed"
+#change Apache config (copy config-file from GIT directory of current user to Apache directory
+sudo cp /home/$USER/inst-lamp-deb11/apache.conf /etc/apache2/sites-available/apache.conf
+sudo a2enmod rewrite
+sudo a2ensite apache.conf
+sudo service apache2 restart
+echo "Apache2 listening port changed to 8081"
+#install NGINX
+sudo apt install nginx
+echo "NGINX installed"
+#change NGINX config
+sudo cp /home/$USER/inst-lamp-deb11/nginx-conf /etc/nginx/sites-available/nginx
+sudo service nginx restart
+echo "NGINX redirection to Apache enabled"
 
 cd /tmp
 wget https://wordpress.org/latest.tar.gz
