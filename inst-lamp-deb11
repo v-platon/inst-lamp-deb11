@@ -8,6 +8,7 @@ sudo mkdir /var/www/task
 echo "Apache2 installed"
 #change Apache config (copy config-file from GIT directory of current user to Apache directory
 sudo cp /home/$USER/inst-lamp-deb11/apache.conf /etc/apache2/sites-available/apache.conf
+sudo cp /home/$USER/inst-lamp-deb11/apache-ports.conf /etc/apache2/ports.conf
 sudo a2enmod rewrite
 sudo a2ensite apache.conf
 sudo service apache2 restart
