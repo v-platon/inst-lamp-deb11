@@ -1,13 +1,18 @@
 #!/bin/bash
-#update data from reprositories
-sudo apt update
-#install Apache + php + php-modules
-sudo apt install apache2 php php-mysql libapache2-mod-php php-mbstring php-zip php-gd
-#open 80/443 ports in firewall
-sudo ufw app info "WWW Full"
-#change Apache config
-#install NGINX
-sudo apt install nginx
-#chenge NGINX config
 
-#bigin wordpress script 
+sudo apt update
+sudo apt upgrade
+
+cd /tmp
+wget https://wordpress.org/latest.tar.gz
+
+tar -xvzf latest.tar.gz
+sudo mv wordpress/ /var/www/task
+
+sudo chmod 755 -R /var/www/html/wordpress/
+sudo chown -R www-data:www-data /var/www/html/wordpress/
+#
+cd /var/www/html/wordpress/
+mv wp-config-sample.php wp-config.php
+#
+systemctl reload nginx.service
