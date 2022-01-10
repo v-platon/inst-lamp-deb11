@@ -22,7 +22,8 @@ echo "NGINX installed"
 #change NGINX config
 sleep 5
 sudo cp /home/$USER/inst-lamp-deb11/nginx-conf /etc/nginx/sites-available/nginx
-sudo mv /etc/nginx/sites-available/default /etc/nginx/sites-available/_default
+#sudo mv /etc/nginx/sites-available/default /etc/nginx/sites-available/_default
+sudo cp /etc/nginx/sites-available/nginx /etc/nginx/sites-enabled/nginx
 sudo service nginx restart
 echo "NGINX redirection to Apache enabled"
 
@@ -60,7 +61,7 @@ sudo chmod -R 755 /var/www/task
 sudo chown -R www-data:www-data /var/www/task/
 #
 cd /var/www/task/
-sudo mv wp-config-sample.php wp-config.php
+#sudo mv wp-config-sample.php wp-config.php
 #
 sudo service nginx restart
 sudo service apache2 restart
