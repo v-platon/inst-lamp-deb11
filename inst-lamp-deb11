@@ -48,12 +48,12 @@ cd /tmp
 wget https://wordpress.org/latest.tar.gz
 
 tar -xvzf latest.tar.gz
-sudo mv wordpress/ /var/www/task/
+sudo mv wordpress/* /var/www/task/
 
-sudo chmod -R 755 /var/www/task/
+sudo chmod -R 755 /var/www/task
 sudo chown -R www-data:www-data /var/www/task/
 #
-cd /var/www/task/wordpress/
+cd /var/www/task/
 mv wp-config-sample.php wp-config.php
 #
 sudo service nginx restart
