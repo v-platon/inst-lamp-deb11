@@ -5,7 +5,7 @@ sudo apt update
 sudo apt install -y apache2 apache2-utils php7.4 php7.4-mysql libapache2-mod-php7.4 php7.4-cli php7.4-cgi php7.4-gd
 #make directory fot the future site
 sudo mkdir /var/www/task
-echo "Apache2 installed"
+echo -e "\n\n\033[32mApache2 installed\033[0m\n"
 sleep 5
 #change Apache config (copy config-file from GIT directory of current user to Apache directory)
 sudo cp -f /home/$USER/inst-lamp-deb11/apache.conf /etc/apache2/sites-available/apache.conf
@@ -14,23 +14,23 @@ sudo mv /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-availab
 sudo a2enmod rewrite
 sudo a2ensite apache.conf
 sudo service apache2 restart
-echo "Apache2 listening port changed to 8081"
+echo -e "\n\n\033[32mApache2 listening port changed to 8081\033[0m\n"
 sleep 5
 #install NGINX
 sudo apt install -y nginx
-echo "NGINX installed"
+echo -e "\n\n\033[32mNGINX installed\033[0m\n"
 #change NGINX config
 sleep 5
 sudo cp /home/$USER/inst-lamp-deb11/nginx-conf /etc/nginx/sites-available/nginx
 sudo cp /etc/nginx/sites-available/nginx /etc/nginx/sites-enabled/nginx
 sudo service nginx restart
-echo "NGINX redirection to Apache enabled"
+echo -e "\n\n\033[32mNGINX redirection to Apache enabled\033[0m\n"
 
 #install database
 sudo apt install -y mariadb-server mariadb-client
 
 #security setting 
-echo -e "\n\033[33m Please enter new root password for MySQL!\n"
+echo -e "\n\033[33m Please enter new root password for MySQL!\033[0m\n"
 read -s rpwd
 sudo mysql -e "SET PASSWORD FOR root@localhost = PASSWORD('$rpwd');FLUSH PRIVILEGES;" 
 printf "$rpwd\n n\n n\n n\n y\n y\n y\n" | sudo mysql_secure_installation
@@ -63,3 +63,4 @@ cd /var/www/task/
 #
 sudo service nginx restart
 sudo service apache2 restart
+echo -e "\n\n\033[32m Wordpress has installed\033[0m\n"
